@@ -72,7 +72,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
   #Запуск UNIT-тестов
-  test:
+  test-linux:
     runs-on: ubuntu-latest
     needs: build-linux
     steps:
@@ -85,4 +85,21 @@ jobs:
         cache: maven
     - name: Test with maven
       run: mvn test --file pom.xml
+
+  #Публикация бинарного файла в GitHub Packages
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Publish package
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
