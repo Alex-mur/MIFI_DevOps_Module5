@@ -10,7 +10,7 @@ public class MainRestController {
 
     @RequestMapping("/about")
     public String home() {
-        return "TEST for MODULE_5_DEVOPS. Alexey Muraviev";
+        return "APP for MODULE_5_DEVOPS. Alexey Muraviev";
     }
 
     //Метод, возвращающий квадрат числа
