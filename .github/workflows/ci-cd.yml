@@ -89,6 +89,7 @@ jobs:
   #Публикация бинарного файла в GitHub Packages
   publish:
     runs-on: ubuntu-latest
+    needs: test-linux
     permissions:
       contents: read
       packages: write
